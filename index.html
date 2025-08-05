@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="Style.css">
+
+    <title>Document</title>
+</head>
+<body>
+    <main dir="ltr">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-6" id="custom-player">
+                    <audio id="song" autoplay="autoplay">
+                        <source src="Mestanek.mp3" type="audio/mpeg">
+                    </audio>
+                    <div id="speaker-background" class="text-center">
+                        <img id="speaker-icon" src="volume-up-fill.svg" alt="Speaker Icon" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <img id="arj" src="video-background.gif" class="img-fluid" alt="Background Image">
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <img id="arj" src="date.png" class="img-fluid" alt="Background Image">
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const audio = document.getElementById('song');
+            const speakerIcon = document.getElementById('speaker-icon');
+
+            const updateIcon = () => {
+                if (audio.paused) {
+                    speakerIcon.src = 'volume-mute-fill.svg'; // Change to your "off" icon
+                } else {
+                    speakerIcon.src = 'volume-up-fill.svg'; // Change to your "on" icon
+                }
+            };
+
+            speakerIcon.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play();
+                } else {
+                    audio.pause();
+                }
+                updateIcon();
+            });
+
+            audio.addEventListener('play', updateIcon);
+            audio.addEventListener('pause', updateIcon);
+
+            window.onload = function() {
+                document.getElementById("song").play();
+            }
+        </script>
+    </main>
+</body>
+</html>

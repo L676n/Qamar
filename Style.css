@@ -1,0 +1,39 @@
+body{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.container{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+#song{
+    background: red;
+}
+
+#custom-player {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    
+}
+
+#speaker-background{
+    position: fixed;
+    margin-top: 52px;
+    margin-left: 5px;
+    background-color: pink;
+    border-radius: 20px;
+    padding: 5px;
+}
+
+#speaker-icon {
+    width: 30px;
+    height: 30px;
+
+}
+
+
