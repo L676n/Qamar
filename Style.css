@@ -37,3 +37,60 @@ body{
 }
 
 
+#comment-name, #comment-input, .comment-card {
+    background-color: #f2a8a2;
+}
+
+#submit-comment, .comment-name{
+   background-color: #df7f76;
+}
+
+.comment-date, .comment-name{
+    color: white;
+}
+
+#comment-name{
+    border-radius: 50px;
+}
+
+#comment-input{
+    border-radius: 20px;
+}
+
+label{
+    color: black; 
+}
+
+svg{
+    margin-bottom: 2px;
+}
+
+#submit-comment{
+    border-radius: 20px;
+    border-color: #df7f76;
+}
+
+.comment-name{
+    border-radius: 20px;
+    margin-left: 215px;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    padding-right: 5px;
+    padding-left: 2px;
+    margin-top: -20px;
+    font-size: 15px;
+    margin-bottom: -10px;
+    
+}
+
+.comment-card{
+    border-radius: 20px;
+}
+
+
+
+
+
+
+
