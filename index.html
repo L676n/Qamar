@@ -22,7 +22,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-6" id="custom-player">
-                    <audio id="song" autoplay>
+                    <audio id="song" autoplay muted loop>
                         <source src="Mestanek.mp3" type="audio/mpeg">
                     </audio>
                     <div id="speaker-background" class="text-center">
@@ -89,6 +89,8 @@
                 <button id="next-btn" class="btn btn-secondary">التالي</button>
                 </div>
 
+                <div id="print-container" class="mt-4"></div>
+                <button class="printBtn col-5" onclick="window.print()">اضغط للطباعة</button>
 
             </div>
         </div>
