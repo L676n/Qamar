@@ -44,7 +44,8 @@ submitBtn.addEventListener('click', async () => {
 
   const isNameValid = /^([\u0621-\u064A\u0660-\u0669\d]+)\s+([\u0621-\u064A\u0660-\u0669\d]+)$/.test(name);
 
-  const isCommentValid = /^[\u0621-\u064A\u0660-\u0669\u06F0-\u06F9\d\s]+$/.test(text);
+  const isCommentValid = /^[\u0621-\u064A\u0660-\u0669\u06F0-\u06F9\w\s\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]+$/u.test(text);
+
 
   nameError.textContent = isNameValid ? '' : "الرجاء إدخال الاسم الأول والأخير فقط";
   commentError.textContent = isCommentValid ? '' : "الرجاء كتابة تعليق يحتوي على حروف وأرقام فقط";
