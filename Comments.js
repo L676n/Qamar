@@ -135,15 +135,18 @@ prevBtn.addEventListener('click', () => {
 const audio = document.getElementById('song');
 const speakerIcon = document.getElementById('speaker-icon');
 
-// تحديث الأيقونة
+// Function to update the speaker icon
 const updateIcon = () => {
-    speakerIcon.src = audio.muted || audio.paused ? 'volume-mute-fill.svg' : 'volume-up-fill.svg';
+    if (audio.paused) {
+        speakerIcon.src = 'volume-mute-fill.svg'; // Change to your "off" icon
+    } else {
+        speakerIcon.src = 'volume-up-fill.svg'; // Change to your "on" icon
+    }
 };
 
-// عند الضغط على الأيقونة
+// Event listener for the speaker icon click
 speakerIcon.addEventListener('click', () => {
-    if (audio.paused || audio.muted) {
-        audio.muted = false;
+    if (audio.paused) {
         audio.play();
     } else {
         audio.pause();
@@ -151,18 +154,9 @@ speakerIcon.addEventListener('click', () => {
     updateIcon();
 });
 
-// تحديث الأيقونة تلقائيًا
+// Update the icon when audio plays or pauses
 audio.addEventListener('play', updateIcon);
 audio.addEventListener('pause', updateIcon);
-
-// فك الكتم بعد أول تفاعل من المستخدم
-window.addEventListener('click', () => {
-    if (audio.muted) {
-        audio.muted = false;
-        audio.play().catch(e => console.log('Autoplay failed:', e));
-    }
-}, { once: true });
-
 
 
 window.onload = () => {
