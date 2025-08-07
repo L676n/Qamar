@@ -41,7 +41,7 @@ body{
     background-color: #f2a8a2;
 }
 
-#submit-comment, .comment-name, .btn{
+#submit-comment, .comment-name{
    background-color: #df7f76;
 }
 
@@ -65,7 +65,7 @@ svg{
     margin-bottom: 2px;
 }
 
-#submit-comment, .btn{
+#submit-comment, .btn, #printBtn{
     border-radius: 20px;
     border-color: #df7f76;
 }
@@ -87,6 +87,22 @@ svg{
 .comment-card{
     border-radius: 20px;
 }
+
+.printBtn {
+  background-color: #df7f76;
+  border: 2px solid #df7f76;
+  border-radius: 20px;
+  margin-right: 30%;
+  color: white;
+  box-shadow: none;
+  outline: none;
+}
+
+.printBtn:hover{
+    background-color: darkgray;
+    border-color: darkgrey;
+}
+
 
 
 
