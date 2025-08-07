@@ -133,42 +133,27 @@ prevBtn.addEventListener('click', () => {
 
 
 const audio = document.getElementById('song');
-    const speakerIcon = document.getElementById('speaker-icon');
+const speakerIcon = document.getElementById('speaker-icon');
 
-    // تحديث أيقونة الصوت
-    const updateIcon = () => {
-        if (audio.muted || audio.paused) {
-            speakerIcon.src = 'volume-mute-fill.svg';
-        } else {
-            speakerIcon.src = 'volume-up-fill.svg';
-        }
-    };
+// تحديث أيقونة الصوت
+const updateIcon = () => {
+    if (audio.muted || audio.paused) {
+        speakerIcon.src = 'volume-mute-fill.svg';
+    } else {
+        speakerIcon.src = 'volume-up-fill.svg';
+    }
+};
 
-    // عند الضغط على أيقونة السماعة
-    speakerIcon.addEventListener('click', () => {
-        if (audio.muted || audio.paused) {
-            audio.muted = false;
-            audio.play();
-        } else {
-            audio.pause();
-        }
-        updateIcon();
-    });
-
-    // تحديث الأيقونة عند التشغيل أو الإيقاف
-    audio.addEventListener('play', updateIcon);
-    audio.addEventListener('pause', updateIcon);
-
-    // عند أول تفاعل من المستخدم: فك كتم الصوت وتشغيله
-    window.addEventListener('click', () => {
-        if (audio.muted) {
-            audio.muted = false;
-            audio.play().catch(err => {
-                console.log('Autoplay failed:', err);
-            });
-        }
-    }, { once: true });
-
+// عند الضغط على أيقونة السماعة
+speakerIcon.addEventListener('click', () => {
+    if (audio.muted || audio.paused) {
+        audio.muted = false;
+        audio.play();
+    } else {
+        audio.pause();
+    }
+    updateIcon();
+});
 
 window.onload = () => {
   loadComments();
