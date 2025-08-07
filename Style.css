@@ -41,7 +41,7 @@ body{
     background-color: #f2a8a2;
 }
 
-#submit-comment, .comment-name{
+#submit-comment, .comment-name, .btn{
    background-color: #df7f76;
 }
 
@@ -65,7 +65,7 @@ svg{
     margin-bottom: 2px;
 }
 
-#submit-comment{
+#submit-comment, .btn{
     border-radius: 20px;
     border-color: #df7f76;
 }
@@ -86,6 +86,11 @@ svg{
 
 .comment-card{
     border-radius: 20px;
+}
+
+audio{
+    visibility: hidden;
+    margin-top: -60px;
 }
 
 
