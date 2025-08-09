@@ -1,16 +1,20 @@
-body{
+body {
     margin: 0;
     padding: 0;
     overflow-x: hidden; /* Prevent horizontal scrolling */
+    background-color: #ffd8e3;
+    overflow-y: scroll; /* Ensure vertical scrollbar is always visible on desktop */
 }
 
-.container{
+/* Ensure container does not create horizontal scroll */
+.container {
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-x: hidden;
 }
 
-#song{
+/* Player styles */
+#song {
     background: red;
 }
 
@@ -18,10 +22,9 @@ body{
     display: flex;
     align-items: center;
     cursor: pointer;
-    
 }
 
-#speaker-background{
+#speaker-background {
     position: fixed;
     margin-top: 52px;
     margin-left: 5px;
@@ -33,81 +36,118 @@ body{
 #speaker-icon {
     width: 30px;
     height: 30px;
-
 }
 
-
-#comment-name, #comment-input, .comment-card {
+/* Comment input styles */
+#comment-name,
+#comment-input,
+.comment-card {
     background-color: #f2a8a2;
 }
 
-#submit-comment, .comment-name{
-   background-color: #df7f76;
+#submit-comment,
+.comment-name,
+#next-btn {
+    background-color: #df7f76;
 }
 
-.comment-date, .comment-name{
+#prev-btn {
+    background-color: brown;
+    border-radius: 20px;
+    border-color: brown;
+}
+
+.comment-date,
+.comment-name {
     color: white;
 }
 
-#comment-name{
+#comment-name {
     border-radius: 50px;
 }
 
-#comment-input{
+#comment-input {
     border-radius: 20px;
 }
 
-label{
-    color: black; 
+label {
+    color: black;
 }
 
-svg{
+svg {
     margin-bottom: 2px;
 }
 
-#submit-comment, .btn, #printBtn{
+/* Button styles */
+#submit-comment,
+.btn,
+#printBtn,
+#next-btn {
     border-radius: 20px;
     border-color: #df7f76;
 }
 
-.comment-name{
+.comment-name {
     border-radius: 20px;
     margin-left: 215px;
     text-align: center;
-    padding-top: 5px;
-    padding-bottom: 10px;
-    padding-right: 5px;
-    padding-left: 2px;
+    padding: 5px 5px 10px 2px;
     margin-top: -20px;
     font-size: 15px;
     margin-bottom: -10px;
-    
 }
 
-.comment-card{
+.comment-card {
     border-radius: 20px;
 }
 
 .printBtn {
-  background-color: #df7f76;
-  border: 2px solid #df7f76;
-  border-radius: 20px;
-  margin-right: 30%;
-  color: white;
-  box-shadow: none;
-  outline: none;
+    background-color: #df7f76;
+    border: 2px solid #df7f76;
+    border-radius: 20px;
+    margin-right: 30%;
+    color: white;
+    box-shadow: none;
+    outline: none;
 }
 
-.printBtn:hover{
+.printBtn:hover,
+#next-btn:hover {
     background-color: darkgray;
-    border-color: darkgrey;
+    border-color: darkgray;
 }
 
+#prev-btn,
+#prev-btn:disabled,
+#prev-btn.disabled {
+    background-color: brown !important;
+    border-color: brown !important;
+    color: white !important;
+    opacity: 1 !important;
+}
 
+#prev-btn:hover:not(:disabled) {
+    background-color: darkgray !important;
+    border-color: darkgray !important;
+}
 
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 10px;
+}
 
+::-webkit-scrollbar-thumb {
+    background: pink;
+    border-radius: 20px;
+}
 
+::-webkit-scrollbar-track {
+    background-color: pink;
+}
 
-
-
-
+/* Firefox scrollbar */
+html {
+    scrollbar-color: #df7f76 #df7f76;
+    scrollbar-width: thin;
+    
+}
