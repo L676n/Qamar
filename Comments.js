@@ -160,50 +160,7 @@ window.onload = () => {
   loadComments();
 };
 
-const printBtn = document.querySelector('.printBtn');
 
-printBtn.addEventListener('click', async () => {
-    // Create a print container if it doesn't exist
-    let printArea = document.getElementById('print-area');
-    if (!printArea) {
-        printArea = document.createElement('div');
-        printArea.id = 'print-area';
-        document.body.appendChild(printArea);
-    }
-
-    // Clear previous print content
-    printArea.innerHTML = '';
-
-    // Include last GIF
-    printArea.innerHTML += `
-        <div class="row justify-content-center">
-            <div class="col-12">
-                <img id="arj" src="4.gif" class="img-fluid" alt="Background Image">
-            </div>
-        </div>
-    `;
-
-    // Fetch all comments from Firestore
-    const snapshot = await getDocs(query(collection(db, "comments"), orderBy("timestamp", "asc")));
-    snapshot.forEach(doc => {
-        const comment = doc.data();
-        const clone = template.content.cloneNode(true);
-        clone.querySelector('.comment-name').textContent = comment.name || 'بدون اسم';
-        clone.querySelector('.comment-text').textContent = comment.text;
-
-        const date = comment.timestamp?.toDate?.();
-        const hijriDate = date ? new Intl.DateTimeFormat('ar-SA-u-ca-islamic', { dateStyle: 'long' }).format(date) : 'تاريخ غير متوفر';
-        const time = date ? date.toLocaleTimeString('ar-EG') : '';
-        clone.querySelector('.comment-date').textContent = `نشر في ${hijriDate} الساعة ${time}`;
-
-        printArea.appendChild(clone);
-    });
-
-    // Wait a short moment to ensure DOM renders on mobile
-    setTimeout(() => {
-        window.print();
-    }, 300);
-});
 
 
 
