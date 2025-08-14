@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden; /* Prevent horizontal scrolling */
-    background-color: #ffc6c1;
+    background-color: #f4bbb7;
     overflow-y: scroll; /* Ensure vertical scrollbar is always visible on desktop */
     background-image: url(sparkle.gif);
 }
