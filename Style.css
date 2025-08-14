@@ -2,10 +2,11 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden; /* Prevent horizontal scrolling */
-    background-color: #ffd8e3;
+    background-color: #ffc6c1;
     overflow-y: scroll; /* Ensure vertical scrollbar is always visible on desktop */
     background-image: url(sparkle.gif);
 }
+
 
 /* Ensure container does not create horizontal scroll */
 .container {
@@ -84,9 +85,9 @@ svg {
 #submit-comment,
 .btn,
 #printBtn,
-#next-btn {
+#next-btn{
     border-radius: 20px;
-    border-color: #df7f76;
+    border-color: rgb(179, 120, 130);
 }
 
 .comment-name {
@@ -153,6 +154,21 @@ html {
     scrollbar-width: thin;
     
 }
+
+.playpen-sans-arabic-1 {
+  font-family: "Playpen Sans Arabic", cursive;
+  font-optical-sizing: auto;
+  font-weight: 600; /* Replace <weight> with 100, 200, 400, 700, etc. */
+  font-style: normal;
+  color: #ffffff;
+}
+
+
+
+
+
+
+
 
 
 
