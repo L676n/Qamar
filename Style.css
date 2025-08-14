@@ -4,6 +4,7 @@ body {
     overflow-x: hidden; /* Prevent horizontal scrolling */
     background-color: #ffd8e3;
     overflow-y: scroll; /* Ensure vertical scrollbar is always visible on desktop */
+    background-image: url(sparkle.gif);
 }
 
 /* Ensure container does not create horizontal scroll */
@@ -151,3 +152,11 @@ html {
     scrollbar-width: thin;
     
 }
+
+
+
+
+
+
+
+

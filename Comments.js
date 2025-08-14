@@ -2,6 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 
 import { getFirestore, collection, addDoc, serverTimestamp, query,orderBy, startAfter, endBefore, limit, limitToLast, getDocs } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -131,8 +132,6 @@ prevBtn.addEventListener('click', () => {
 });
 
 
-
-
 const audio = document.getElementById('song');
 const speakerIcon = document.getElementById('speaker-icon');
 
@@ -156,9 +155,71 @@ speakerIcon.addEventListener('click', () => {
     updateIcon();
 });
 
+
 window.onload = () => {
   loadComments();
 };
+
+const printBtn = document.querySelector('.printBtn');
+
+printBtn.addEventListener('click', async () => {
+    // Save the current page content
+    const originalContent = document.body.innerHTML;
+    const originalBg = document.body.style.backgroundColor;
+
+    // Set body background for printing
+    document.body.style.backgroundColor = '#ffd8e3';
+    document.body.style.direction = 'rtl';
+
+    // Create a temporary container for comments only
+    const tempPrintContainer = document.createElement('div');
+    tempPrintContainer.style.padding = '20px';
+
+    // Include last GIF
+    const lastGifHTML = `
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <img id="arj" src="4.gif" class="img-fluid" alt="Background Image">
+            </div>
+        </div>
+    `;
+    tempPrintContainer.innerHTML = lastGifHTML;
+
+    // Fetch all comments from Firestore
+    const snapshot = await getDocs(query(collection(db, "comments"), orderBy("timestamp", "asc")));
+    snapshot.forEach(doc => {
+        const comment = doc.data();
+        const clone = template.content.cloneNode(true);
+        clone.querySelector('.comment-name').textContent = comment.name || 'بدون اسم';
+        clone.querySelector('.comment-text').textContent = comment.text;
+
+        const date = comment.timestamp?.toDate?.();
+        const hijriDate = date ? new Intl.DateTimeFormat('ar-SA-u-ca-islamic', { dateStyle: 'long' }).format(date) : 'تاريخ غير متوفر';
+        const time = date ? date.toLocaleTimeString('ar-EG') : '';
+        clone.querySelector('.comment-date').textContent = `نشر في ${hijriDate} الساعة ${time}`;
+
+        tempPrintContainer.appendChild(clone);
+    });
+
+    // Replace body content with temporary container
+    document.body.innerHTML = tempPrintContainer.outerHTML;
+
+    // Print
+    window.print();
+
+    // Restore original content and background
+    document.body.innerHTML = originalContent;
+    document.body.style.backgroundColor = originalBg;
+});
+
+
+
+
+
+
+
+
+
 
 
 
