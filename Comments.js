@@ -163,27 +163,25 @@ window.onload = () => {
 const printBtn = document.querySelector('.printBtn');
 
 printBtn.addEventListener('click', async () => {
-    // Save the current page content
-    const originalContent = document.body.innerHTML;
-    const originalBg = document.body.style.backgroundColor;
+    // Create a print container if it doesn't exist
+    let printArea = document.getElementById('print-area');
+    if (!printArea) {
+        printArea = document.createElement('div');
+        printArea.id = 'print-area';
+        document.body.appendChild(printArea);
+    }
 
-    // Set body background for printing
-    document.body.style.backgroundColor = '#ffd8e3';
-    document.body.style.direction = 'rtl';
-
-    // Create a temporary container for comments only
-    const tempPrintContainer = document.createElement('div');
-    tempPrintContainer.style.padding = '20px';
+    // Clear previous print content
+    printArea.innerHTML = '';
 
     // Include last GIF
-    const lastGifHTML = `
+    printArea.innerHTML += `
         <div class="row justify-content-center">
             <div class="col-12">
                 <img id="arj" src="4.gif" class="img-fluid" alt="Background Image">
             </div>
         </div>
     `;
-    tempPrintContainer.innerHTML = lastGifHTML;
 
     // Fetch all comments from Firestore
     const snapshot = await getDocs(query(collection(db, "comments"), orderBy("timestamp", "asc")));
@@ -198,19 +196,15 @@ printBtn.addEventListener('click', async () => {
         const time = date ? date.toLocaleTimeString('ar-EG') : '';
         clone.querySelector('.comment-date').textContent = `نشر في ${hijriDate} الساعة ${time}`;
 
-        tempPrintContainer.appendChild(clone);
+        printArea.appendChild(clone);
     });
 
-    // Replace body content with temporary container
-    document.body.innerHTML = tempPrintContainer.outerHTML;
-
-    // Print
-    window.print();
-
-    // Restore original content and background
-    document.body.innerHTML = originalContent;
-    document.body.style.backgroundColor = originalBg;
+    // Wait a short moment to ensure DOM renders on mobile
+    setTimeout(() => {
+        window.print();
+    }, 300);
 });
+
 
 
 
