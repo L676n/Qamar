@@ -164,6 +164,19 @@ html {
   font-size: 20px; 
 }
 
+.comment-name{
+    font-size: 15px;
+}
+
+/* Prevent browser dark mode adjustments */
+html, body {
+    color-scheme: light;
+    -webkit-text-size-adjust: 100%;
+    -webkit-color-scheme: light;
+    forced-color-adjust: none;
+}
+
+
 
 
 
