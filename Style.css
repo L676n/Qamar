@@ -161,7 +161,7 @@ html {
   font-weight: 600; /* Replace <weight> with 100, 200, 400, 700, etc. */
   font-style: normal;
   color: #ffffff;
-  font-size: 22px; 
+  font-size: 20px; 
 }
 
 /* Force light mode colors in dark mode */
@@ -282,7 +282,7 @@ html {
         font-weight: 600 !important;
         font-style: normal !important;
         color: #ffffff !important;
-        font-size: 22px !important;
+        font-size: 20px !important;
     }
 }
 
