@@ -36,7 +36,7 @@ body {
     z-index: 9999;  /* always on top */
 }
 
-svg {
+#speaker-icon {
     width: 30px;
     height: 30px;
 }
