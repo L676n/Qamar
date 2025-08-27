@@ -1,20 +1,20 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
-import { getFirestore, collection, addDoc, serverTimestamp, query,orderBy, startAfter, endBefore, limit, limitToLast, getDocs } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, serverTimestamp, query,orderBy, startAfter, endBefore, limit, limitToLast, getDocs } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyDk4jt0W0IgvAYcetDIruaG-A6GHFeOfMI",
-  authDomain: "congrats-baby.firebaseapp.com",
-  projectId: "congrats-baby",
-  storageBucket: "congrats-baby.firebasestorage.app",
-  messagingSenderId: "784965695153",
-  appId: "1:784965695153:web:0759ad1f6fb4a4fce9d490"
-};
+  const firebaseConfig = {
+    apiKey: "AIzaSyA4jkha4eKVo93x1HvihYciE8myb9p0AxM",
+    authDomain: "congrats-baby-2fcbd.firebaseapp.com",
+    projectId: "congrats-baby-2fcbd",
+    storageBucket: "congrats-baby-2fcbd.firebasestorage.app",
+    messagingSenderId: "1098929567768",
+    appId: "1:1098929567768:web:45857178f6a74120e1ab6d"
+  };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -78,13 +78,27 @@ const commentsPerPage = 3;
 async function loadComments(direction = "none") {
   commentsContainer.innerHTML = '';
 
-  let q = query(collection(db, "comments"), orderBy("timestamp", "asc"), limit(commentsPerPage));
+  let q = query(
+    collection(db, "comments"),
+    orderBy("timestamp", "desc"),
+    limit(commentsPerPage)
+  );
 
   if (direction === "next" && lastVisible) {
-    q = query(collection(db, "comments"), orderBy("timestamp", "asc"), startAfter(lastVisible), limit(commentsPerPage));
+    q = query(
+      collection(db, "comments"),
+      orderBy("timestamp", "desc"),
+      startAfter(lastVisible),
+      limit(commentsPerPage)
+    );
     currentPage++;
   } else if (direction === "prev" && firstVisible) {
-    q = query(collection(db, "comments"), orderBy("timestamp", "asc"), endBefore(firstVisible), limitToLast(commentsPerPage));
+    q = query(
+      collection(db, "comments"),
+      orderBy("timestamp", "desc"),
+      endBefore(firstVisible),
+      limitToLast(commentsPerPage)
+    );
     currentPage--;
   }
 
@@ -102,12 +116,14 @@ async function loadComments(direction = "none") {
       clone.querySelector('.comment-text').textContent = comment.text;
 
       const date = comment.timestamp?.toDate?.();
-      const hijriDate = date ? new Intl.DateTimeFormat('ar-SA-u-ca-islamic', { dateStyle: 'long' }).format(date) : 'تاريخ غير متوفر';
+      const hijriDate = date
+        ? new Intl.DateTimeFormat('ar-SA-u-ca-islamic', { dateStyle: 'long' }).format(date)
+        : 'تاريخ غير متوفر';
       const time = date ? date.toLocaleTimeString('ar-EG') : '';
 
       clone.querySelector('.comment-date').textContent = `نشر في ${hijriDate} الساعة ${time}`;
 
-      commentsContainer.appendChild(clone); 
+      commentsContainer.appendChild(clone);
     });
   }
 
@@ -116,6 +132,7 @@ async function loadComments(direction = "none") {
   prevBtn.disabled = currentPage <= 1;
   nextBtn.disabled = currentPage >= totalPages;
 }
+
 
 nextBtn.addEventListener('click', () => {
   loadComments("next");
