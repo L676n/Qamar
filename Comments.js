@@ -78,11 +78,7 @@ const commentsPerPage = 3;
 async function loadComments(direction = "none") {
   commentsContainer.innerHTML = '';
 
-  let q = query(
-    collection(db, "comments"),
-    orderBy("timestamp", "desc"),
-    limit(commentsPerPage)
-  );
+  let q;
 
   if (direction === "next" && lastVisible) {
     q = query(
@@ -100,6 +96,14 @@ async function loadComments(direction = "none") {
       limitToLast(commentsPerPage)
     );
     currentPage--;
+  } else {
+    // 👈 أول تحميل (أو تحديث) لازم يجيب أول صفحة عادي
+    q = query(
+      collection(db, "comments"),
+      orderBy("timestamp", "desc"),
+      limit(commentsPerPage)
+    );
+    currentPage = 1;
   }
 
   const snapshot = await getDocs(q);
@@ -132,6 +136,7 @@ async function loadComments(direction = "none") {
   prevBtn.disabled = currentPage <= 1;
   nextBtn.disabled = currentPage >= totalPages;
 }
+
 
 
 nextBtn.addEventListener('click', () => {
